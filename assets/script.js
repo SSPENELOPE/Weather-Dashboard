@@ -8,20 +8,15 @@ var cityInput = document.getElementById("city");
 
 
 
+/*             Functions               */
 
-var submitCitySearch = function (event) {
-    event.preventDefault();
+function displayCurrentWeather() {
+    
+}
 
+// Search button event listener
+searchBtn.addEventListener("click", function(){
     var city = cityInput.value.trim();
-    if (city) {
-        getWeatherData(city);
-        cityInput.value = "";
-    }
-};
-
-
-
-var getWeatherData = function () {
     var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
 
     fetch(weatherUrl)
@@ -29,14 +24,13 @@ var getWeatherData = function () {
             if (!response.ok) {
                 alert("Error: " + response.statusText);
             } else {
-                response.json().then(function(data) {
-                    //displayCurrentWeather(data);
+                response.json().then(function (data) {
+                    //displayCurrentWeather();
                     console.log(data);
                 });
             }
         })
-    };
-
-
-
-searchBtn.addEventListener("click", getWeatherData());
+        .catch(function(error) {
+            alert("Enter a Valid City Name")
+        })
+});
