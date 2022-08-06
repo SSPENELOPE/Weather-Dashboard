@@ -4,7 +4,8 @@ var cityList = document.getElementById("city-list");
 var cityInput = document.getElementById("city");
 var cityName = document.getElementById("city-name");
 var temp = document.getElementById("temp");
-var citiesBtns = document.querySelectorAll(".cities")
+var uvIndex = document.getElementById("uv-index");
+var citiesBtns = document.querySelectorAll(".cities");
 var storageArray = [];
 
 
