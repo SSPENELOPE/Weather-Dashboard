@@ -2,7 +2,7 @@
 var searchBtn = document.getElementById("search");
 var cityList = document.getElementById("city-list");
 var cityInput = document.getElementById("city");
-
+var storageArray = [];
 
 
 
@@ -11,7 +11,20 @@ var cityInput = document.getElementById("city");
 /*             Functions               */
 
 function displayCurrentWeather() {
-    
+    // Create and append the searched cities
+    var cities = document.createElement("li");
+    cities.classList = "list-group-item text-center cities";
+    cities.textContent = cityInput.value.toUpperCase();
+    cityList.appendChild(cities);
+
+    // Save the cities to storage
+    storageArray = [];
+    var savedCities = document.querySelectorAll(".cities");
+    savedCities.forEach((cities) => {
+    storageArray.push(cities.textContent);        
+    });
+    localStorage.setItem("saveCities", JSON.stringify(storageArray));
+    console.log(storageArray);
 }
 
 // Search button event listener
@@ -25,7 +38,7 @@ searchBtn.addEventListener("click", function(){
                 alert("Error: " + response.statusText);
             } else {
                 response.json().then(function (data) {
-                    //displayCurrentWeather();
+                    displayCurrentWeather();
                     console.log(data);
                 });
             }
@@ -33,4 +46,5 @@ searchBtn.addEventListener("click", function(){
         .catch(function(error) {
             alert("Enter a Valid City Name")
         })
+        
 });
