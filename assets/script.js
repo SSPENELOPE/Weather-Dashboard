@@ -9,22 +9,20 @@ var cityInput = document.getElementById("city");
 
 
 
-var submitCitySearch = function(event) {
+var submitCitySearch = function (event) {
     event.preventDefault();
+
     var city = cityInput.value.trim();
     if (city) {
         getWeatherData(city);
         cityInput.value = "";
-    } else {
-        alert("Enter a City Name");
     }
-
 };
 
 
 
-function getWeatherData() {
-    var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?' + city + '&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
+var getWeatherData = function () {
+    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
 
     fetch(weatherUrl)
         .then(function (response) {
@@ -32,7 +30,7 @@ function getWeatherData() {
                 alert("Error: " + response.statusText);
             } else {
                 response.json().then(function(data) {
-                    displayCurrentWeather(data);
+                    //displayCurrentWeather(data);
                     console.log(data);
                 });
             }
@@ -41,4 +39,4 @@ function getWeatherData() {
 
 
 
-searchBtn.addEventListener("click", submitCitySearch());
+searchBtn.addEventListener("click", getWeatherData());
