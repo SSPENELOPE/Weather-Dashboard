@@ -14,10 +14,22 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    border: 3px solid orange !important;
 }
 
 .button-div {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    margin-bottom: 5px;
+    border-bottom:  3px solid #000;
+}
+
+.custom-card {
+    height: 100vh;
+    border: 3px solid limegreen !important;
+}
+
+.custom-jumbotron {
+    border: 3px solid yellow !important;
 }
