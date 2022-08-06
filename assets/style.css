@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.custom-header {
+  background-image: linear-gradient(
+        rgba(104, 102, 236, 0.3) 0%,
+        rgba(102, 176, 236, 0.6) 100%
+  );
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
