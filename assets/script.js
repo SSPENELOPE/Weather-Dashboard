@@ -2,6 +2,8 @@
 var searchBtn = document.getElementById("search");
 var cityList = document.getElementById("city-list");
 var cityInput = document.getElementById("city");
+var cityName = document.getElementById("city-name");
+var temp = document.getElementById("temp");
 var storageArray = [];
 
 
@@ -10,15 +12,40 @@ var storageArray = [];
 
 /*             Functions               */
 
-function displayCurrentWeather() {
+
+var getCurrentWeather = function () {
+    var city = cityInput.value.trim();
+    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
+
+    fetch(weatherUrl)
+        .then(function (response) {
+            if (!response.ok) {
+                alert("Error: " + response.statusText);
+            } else {
+                response.json().then(function (data) {
+                    displayCurrentWeather(data);
+                    console.log(data);
+                });
+            }
+        })
+        .catch(function(error) {
+            alert("Enter a Valid City Name")
+        })
+}
+
+
+function displayCurrentWeather(data) {
     // Create and append the searched cities
     var cities = document.createElement("button");
-    cities.classList = "list-group-item text-center cities";
+    cities.classList = "list-group-item text-center cities my-2";
     cities.textContent = cityInput.value.toUpperCase();
     cityList.appendChild(cities);
 
     // Append the weather data to the page
-
+    for (var i = 0; i < data.length; i++){
+    cityName.innerHTML = cityInput.value;
+    temp.innerHTML = data[i].main.temp;
+    };
     // Save the cities to storage
     storageArray = [];
     var savedCities = document.querySelectorAll(".cities");
@@ -40,7 +67,7 @@ function loadSavedCities() {
     for (var i = 0; i < storageArray.length; i++) {
         var cityNames = storageArray[i]
         var cities = document.createElement("button");
-        cities.classList = "list-group-item text-center cities";
+        cities.classList = "list-group-item text-center cities my-2";
         cities.textContent = cityNames;
         cityList.appendChild(cities);
     }
@@ -48,26 +75,7 @@ function loadSavedCities() {
 }
 
 // Search button event listener
-searchBtn.addEventListener("click", function(){
-    var city = cityInput.value.trim();
-    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
-
-    fetch(weatherUrl)
-        .then(function (response) {
-            if (!response.ok) {
-                alert("Error: " + response.statusText);
-            } else {
-                response.json().then(function (data) {
-                    displayCurrentWeather();
-                    console.log(data);
-                });
-            }
-        })
-        .catch(function(error) {
-            alert("Enter a Valid City Name")
-        })
-        
-});
+searchBtn.addEventListener("click", getCurrentWeather);
 
 
 // Functions to call immediatley
