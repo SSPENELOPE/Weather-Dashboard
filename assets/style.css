@@ -14,7 +14,6 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    border: 3px solid orange !important;
 }
 
 .button-div {
@@ -27,7 +26,6 @@
 
 .custom-card {
     height: 100vh;
-    border: 3px solid limegreen !important;
 }
 
 .custom-jumbotron {
@@ -36,18 +34,15 @@
     align-content: center;
     flex-wrap: wrap;
     height: 40vh;
-    border: 3px solid yellow !important;
 }
 
 .custom-div {
-    border: 3px solid purple;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
 .forecast {
-    border: 3px solid red !important;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
