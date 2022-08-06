@@ -3,6 +3,7 @@ var searchBtn = document.getElementById("search");
 var cityList = document.getElementById("city-list");
 var cityInput = document.getElementById("city");
 var storageArray = [];
+var cities = document.createElement("li");
 
 
 
@@ -12,7 +13,6 @@ var storageArray = [];
 
 function displayCurrentWeather() {
     // Create and append the searched cities
-    var cities = document.createElement("li");
     cities.classList = "list-group-item text-center cities";
     cities.textContent = cityInput.value.toUpperCase();
     cityList.appendChild(cities);
@@ -27,13 +27,17 @@ function displayCurrentWeather() {
     console.log(storageArray);
 };
 
-function loadSavedCities(cities) {
+// 
+function loadSavedCities() {
     storageArray = JSON.parse(localStorage.getItem('savedCities')) || [];
-  /*   cityList.forEach((cities) => {
-        cities.textContent = storageArray[i];
+    cityList.forEach((cities) => {
+        cities[i].textContent = storageArray[i];
         cityList.appendChild(cities);
-    }) */
-    
+    })
+ /*    for (var i = 0; i < storageArray.length; i++) {
+        cities[i].textContent = storageArray[i];
+    } */
+
 }
 
 // Search button event listener
