@@ -25,6 +25,15 @@ function displayCurrentWeather() {
     });
     localStorage.setItem("saveCities", JSON.stringify(storageArray));
     console.log(storageArray);
+};
+
+function loadSavedCities(cities) {
+    storageArray = JSON.parse(localStorage.getItem('savedCities')) || [];
+  /*   cityList.forEach((cities) => {
+        cities.textContent = storageArray[i];
+        cityList.appendChild(cities);
+    }) */
+    
 }
 
 // Search button event listener
@@ -48,3 +57,7 @@ searchBtn.addEventListener("click", function(){
         })
         
 });
+
+
+// Functions to call immediatley
+loadSavedCities();
