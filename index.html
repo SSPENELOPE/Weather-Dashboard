@@ -22,24 +22,13 @@
                 <h2 class="text-center">Search For a City:</h1>
                 <div class="button-div">
                     <input type="text" placeholder="Find a City" id="search" class="p-1 m-1 bg-dark text-light">
-                    <button type="submit" class="m-1 bg-primary rounded">Search</button>
+                    <button type="submit" class="m-1 bg-primary rounded" id="search">Search</button>
                 </div>
-                <ul class="list-group list-group-flush" id="saved-cities">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
+                <ul class="list-group list-group-flush" id="city-list"></ul>
             </div>
         </section>
         <!--City Weather Stats-->
         <section class="col d-flex flex-wrap custom-div">
-           <!--  <div class="jumbotron custom-jumbotron">
-                <h1 class="display-4" id="current-city">Hello, world!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <ul id="current-stats"></ul>
-            </div> -->
             <div class="card bg-dark text-white custom-jumbotron">
                 <div class="card-img-overlay">
                   <h5 class="card-title">Card title</h5>
