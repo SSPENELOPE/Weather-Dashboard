@@ -41,4 +41,15 @@
 
 .custom-div {
     border: 3px solid purple;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.forecast {
+    border: 3px solid red !important;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
 }
