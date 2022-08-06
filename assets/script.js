@@ -13,7 +13,7 @@ var cityInput = document.getElementById("city");
 
 
 function getWeatherData() {
-    var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176&';
+    var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
 
     fetch(weatherUrl)
         .then(function (response) {
@@ -30,6 +30,4 @@ function getWeatherData() {
 
 
 
-searchBtn.addEventListener("click", function () {
-    getWeatherData();
-});
+searchBtn.addEventListener("click", getWeatherData());
