@@ -9,25 +9,36 @@ var cityInput = document.getElementById("city");
 
 
 
+var submitCitySearch = function(event) {
+    event.preventDefault();
+    var city = cityInput.value.trim();
+    if (city) {
+        getWeatherData(city);
+        cityInput.value = "";
+    } else {
+        alert("Enter a City Name");
+    }
+
+};
 
 
 
 function getWeatherData() {
-    var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
+    var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?' + city + '&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
 
     fetch(weatherUrl)
         .then(function (response) {
             if (!response.ok) {
                 alert("Error: " + response.statusText);
             } else {
-                return response.json();
+                response.json().then(function(data) {
+                    displayCurrentWeather(data);
+                    console.log(data);
+                });
             }
         })
-        .then(function (data) {
-            console.log(data);
-        });
     };
 
 
 
-searchBtn.addEventListener("click", getWeatherData());
+searchBtn.addEventListener("click", submitCitySearch());
