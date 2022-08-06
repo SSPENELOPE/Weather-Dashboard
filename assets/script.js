@@ -44,6 +44,7 @@ function displayCurrentWeather(data) {
     cityList.appendChild(cities);
 
     // add the weather data to the page
+    
     for (var i = 0; i < data.length; i++) {
         cityName.innerHTML = cityInput.value;
         temp.innerHTML = data[i].main.temp;
