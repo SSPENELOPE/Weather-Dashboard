@@ -40,7 +40,7 @@ var getCurrentWeather = function () {
 function displayCurrentWeather(data) {
     // Create and append the searched cities
     var cities = document.createElement("button");
-    cities.classList = "list-group-item text-center cities my-2";
+    cities.classList = "bg-transparent text-center cities m-3";
     cities.textContent = cityInput.value.toUpperCase();
     cityList.appendChild(cities);
 
@@ -51,10 +51,12 @@ function displayCurrentWeather(data) {
 
     // Save the cities to storage
     storageArray = [];
+
     var savedCities = document.querySelectorAll(".cities");
     savedCities.forEach((cities) => {
         storageArray.push(cities.textContent);
     });
+
     localStorage.setItem("savedCities", JSON.stringify(storageArray));
     console.log(storageArray);
 };
@@ -62,29 +64,23 @@ function displayCurrentWeather(data) {
 // Load the previously saved cities
 function loadSavedCities() {
     storageArray = JSON.parse(localStorage.getItem('savedCities')) || [];
-    /*     storageArray.forEach((cities) => {
-            var cities = document.createElement("li");
-            cities.textContent = storageArray;
-            cityList.appendChild(cities);
-        }) */
-    for (var i = 0; i < storageArray.length; i++) {
-        var cityNames = storageArray[i]
+
+     storageArray.forEach((cityNames) => {
         var cities = document.createElement("button");
         cities.classList = "bg-transparent text-center cities m-3";
         cities.textContent = cityNames;
         cityList.appendChild(cities);
-    }
-}
+        });
+;}
 
 // Search button event listener
 searchBtn.addEventListener("click", getCurrentWeather);
 
 // recall preivously searched city
+// TODO: Write the loadSaveCity function
 citiesBtns.forEach((cities) => {
     cities.addEventListener("click", loadSavedCity);
 });
 
 // Functions to call immediatley
 loadSavedCities();
-
-/// For push
