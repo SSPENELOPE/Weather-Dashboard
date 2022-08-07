@@ -3,17 +3,27 @@
     padding: 0;
 }
 
+body {
+    background: url(./images/night-sky-stars-scenery-landscape-21-4K.jpg);
+}
+
 .custom-header {
   background-image: linear-gradient(
         rgba(104, 102, 236, 0.3) 0%,
         rgba(102, 176, 236, 0.6) 100%
   );
+  display: flex;
+  flex-direction: column;
 }
 
 .wrapper {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+}
+
+.custom-button {
+    width: 5vw;
 }
 
 .button-div {
@@ -25,7 +35,11 @@
 }
 
 .custom-card {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 20vh;
+    width: 90vw;
 }
 
 .custom-jumbotron {
@@ -52,4 +66,43 @@
 .cities-list {
     font-weight: 600;
     font-size: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.cities {
+    border: none;
+    font-weight: 600;
+}
+
+.cities:hover {
+    color: #fff;
+}
+
+.neon-row {
+    box-shadow:
+    0 0 0.1px 0.4px #17dcff,
+    0 0 0.4px 0.6px #1e91f0,
+    0 0   4px 0.4px #1e3df0,
+    inset 0 0  1.5px 0.4px #1e3df0,
+    inset 0 0  0.4px 0.2px #1e91f0,
+    inset 0 0  0.5px 0.2px #17dcff;
+    border-radius: 1.5rem;
+}
+
+.neon-card {
+    box-shadow:
+    0 0 0.1px 0.4px #17dcff,
+    0 0 0.4px 0.6px #1e91f0,
+    0 0   4px 0.4px #1e3df0,
+    inset 0 0  0.5px 0.2px #1e3df0,
+    inset 0 0  0.2px 0.1px #1e91f0,
+    inset 0 0  0.5px 0.2px #17dcff;
+}
+
+.neon {
+    text-align: center;
+    color: #17dcff;
+    text-shadow:  
+    .1vw 0vw .25vw #1e91f0, .2vw 0vw .25vw #1e3df0;
 }
