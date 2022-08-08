@@ -46,7 +46,7 @@ function displayCurrentWeather(data) {
     cityList.appendChild(cities);
 
     // add the weather data to the page
-        cityName.innerHTML = cityInput.value;
+        cityName.innerHTML = cityInput.value.toUpperCase();
         temp.innerHTML = "Temprature: " + data.main.temp + "F";
    
 
