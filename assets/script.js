@@ -15,9 +15,29 @@ var storageArray = [];
 
 /*             Functions               */
 
-// Function to get the weather from desired city
-var getCurrentWeather = function () {
+function getLatandLon() {
     var city = cityInput.value.trim() || citiesBtns.innerHTML;
+    // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
+    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
+
+    fetch(weatherUrl)
+        .then(function (response) {
+            if (!response.ok) {
+                alert("Error: " + response.statusText);
+            } else {
+                return response.json().then(function (latLon) {
+                    console.log(latLon);
+                });
+            }
+        })
+        .catch(function (error) {
+            alert(error + "Enter a Valid City Name")
+        })
+}
+
+// Function to get the weather from desired city
+var getCurrentWeather = function (latLon) {
+    var city = latLon.coord
     // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
     var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
 
@@ -46,8 +66,8 @@ function displayCurrentWeather(data) {
     cityList.appendChild(cities);
 
     // add the weather data to the page
-        cityName.innerHTML = cityInput.value.toUpperCase();
-        temp.innerHTML = "Temprature: " + data.main.temp + "F";
+        //cityName.innerHTML = cityInput.value.toUpperCase();
+        //temp.innerHTML = "Temprature: " + data.main.temp + "F";
    
 
     // Save the cities to storage
@@ -92,7 +112,7 @@ clearBtn.addEventListener("click", function() {
 });
 
 // Search button event listener
-searchBtn.addEventListener("click", getCurrentWeather);
+searchBtn.addEventListener("click", getLatandLon);
 
 // recall preivously searched city
 // TODO: Write the loadSaveCity function

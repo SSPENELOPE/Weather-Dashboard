@@ -12,7 +12,7 @@ weather as well as the 5 day forecast
 # Usage
 - Type in city you are searching for and  press the search button. Mind you spelling is important. If you do not spell your city name correctly you will get an error. Upon pressing search your current weather and 5 day forecast will be displayed
 
-![alt text]()
+![alt text](.//assets/images/night-sky-stars-scenery-landscape-21-4K.jpg)
 
 - You can view and use this page at (https://sspenelope.github.io/Weather-Dashboard/)
 
