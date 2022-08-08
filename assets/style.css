@@ -3,9 +3,19 @@
     padding: 0;
 }
 
-body {
+/* body {
     background: url(./images/night-sky-stars-scenery-landscape-21-4K.jpg);
-}
+} */
+
+ video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -9999;
+  }
+
 
 .custom-header {
   background-image: linear-gradient(
