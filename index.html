@@ -11,11 +11,13 @@
 
 <body>
 
+<!--Background Video-->
 <video playsinline autoplay muted loop poster="cake.jpg">
     <source src="./assets/images/Star Citizen Live Wallpaper HD.mp4" type="video/webm">
     Your browser does not support the video tag.
 </video>
 
+<!--Header-->
     <header class="custom-header text-center p-3">
         <h1 class="text-light">Weather Dashboard</h1>
         <section class="col">
@@ -31,15 +33,16 @@
     </header>
 
 <main class="wrapper">
-    
+  
+ <!--Current Weather Card--> 
 <section class="col d-flex flex-wrap custom-div">
     <section class="card bg-dark text-white custom-jumbotron bg-transparent">
       <div class="card-img-overlay">
         <h2 class="text-light text-center">Your Current Weather</h2>
-          <ul>
-            <li class="" id="city-name"></li>
+          <ul class="city-stats-list">
+            <li class="city-name" id="city-name"></li>
             <li class="" id="temp"></li>
-            <li class="" id="uv-index"></p>
+            <li class="" id="uv-index"></li>
           </ul>
       </div>
     </section>
@@ -49,6 +52,7 @@
   <section class="col forecast">
     <h3 class="text-light">5-Day Forecast:</h3>
       <div class="row neon-row justify-content-around m-1 p-1">
+
         <!--Weather Cards-->
         <div class="card bg-transparent neon-card" style="width: 13rem;">
             <ul class="list-group bg-transparent list-group-flush">

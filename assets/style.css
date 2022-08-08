@@ -1,29 +1,16 @@
+/*    Global    */
 * {
     margin: 0;
     padding: 0;
 }
 
-/* body {
-    background: url(./images/night-sky-stars-scenery-landscape-21-4K.jpg);
-} */
-
- video {
+video {
     position: fixed;
     right: 0;
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
     z-index: -9999;
-  }
-
-
-.custom-header {
-  background-image: linear-gradient(
-        rgba(104, 102, 236, 0.3) 0%,
-        rgba(102, 176, 236, 0.6) 100%
-  );
-  display: flex;
-  flex-direction: column;
 }
 
 .wrapper {
@@ -32,16 +19,35 @@
     flex-direction: row;
 }
 
-.custom-button {
-    width: 5vw;
+
+/*   Header   */
+.cities-list {
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
 }
 
-.button-div {
+.cities {
+    border: none;
+    font-weight: 600;
+}
+
+.cities:hover {
+    color: #fff;
+}
+
+.custom-header {
+    background-image: linear-gradient(rgba(104, 102, 236, 0.3) 0%,
+            rgba(102, 176, 236, 0.6) 100%);
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    margin-bottom: 5px;
-    border-bottom:  3px solid #000;
+}
+
+
+/*    Current Weather Card       */
+.custom-button {
+    width: 5vw;
 }
 
 .custom-card {
@@ -66,6 +72,16 @@
     flex-wrap: wrap;
 }
 
+.city-stats-list {
+    list-style: none;
+}
+
+.city-name {
+    font-size: 30px;
+    
+}
+
+/*     5 day forecast      */
 .forecast {
     display: flex;
     flex-direction: column;
@@ -73,46 +89,30 @@
 
 }
 
-.cities-list {
-    font-weight: 600;
-    font-size: 15px;
-    display: flex;
-    flex-direction: row;
-}
-
-.cities {
-    border: none;
-    font-weight: 600;
-}
-
-.cities:hover {
-    color: #fff;
-}
-
 .neon-row {
     box-shadow:
-    0 0 0.1px 0.4px #17dcff,
-    0 0 0.4px 0.6px #1e91f0,
-    0 0   4px 0.4px #1e3df0,
-    inset 0 0  1.5px 0.4px #1e3df0,
-    inset 0 0  0.4px 0.2px #1e91f0,
-    inset 0 0  0.5px 0.2px #17dcff;
+        0 0 0.1px 0.4px #17dcff,
+        0 0 0.4px 0.6px #1e91f0,
+        0 0 4px 0.4px #1e3df0,
+        inset 0 0 1.5px 0.4px #1e3df0,
+        inset 0 0 0.4px 0.2px #1e91f0,
+        inset 0 0 0.5px 0.2px #17dcff;
     border-radius: 1.5rem;
 }
 
 .neon-card {
     box-shadow:
-    0 0 0.1px 0.4px #17dcff,
-    0 0 0.4px 0.6px #1e91f0,
-    0 0   4px 0.4px #1e3df0,
-    inset 0 0  0.5px 0.2px #1e3df0,
-    inset 0 0  0.2px 0.1px #1e91f0,
-    inset 0 0  0.5px 0.2px #17dcff;
+        0 0 0.1px 0.4px #17dcff,
+        0 0 0.4px 0.6px #1e91f0,
+        0 0 4px 0.4px #1e3df0,
+        inset 0 0 0.5px 0.2px #1e3df0,
+        inset 0 0 0.2px 0.1px #1e91f0,
+        inset 0 0 0.5px 0.2px #17dcff;
 }
 
 .neon {
     text-align: center;
     color: #17dcff;
-    text-shadow:  
-    .1vw 0vw .25vw #1e91f0, .2vw 0vw .25vw #1e3df0;
+    text-shadow:
+        .1vw 0vw .25vw #1e91f0, .2vw 0vw .25vw #1e3df0;
 }
