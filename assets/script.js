@@ -19,7 +19,8 @@ var storageArray = [];
 var getLatandLon = function() {
     var city = cityInput.value.trim() || citiesBtns.innerHTML;
     // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
-    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
+
+    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
 
     fetch(weatherUrl, {
         cache: 'reload',
@@ -38,16 +39,16 @@ var getLatandLon = function() {
             alert(error + "Enter a Valid City Name")
         })
 }
-//update
+
 // Function to get the weather from desired city
 var getCurrentWeather = function (latLon) {
     var lat = latLon.coord.lat
     var lon = latLon.coord.lon
     // Get the weather using onecall
-    var newWeatherUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+lon+'&units=imperial&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
+    var newWeatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&units=imperial&appid=ec2870611b1a5011e09492842b353545';
     
     fetch(newWeatherUrl, {
-        method: 'post',
+        method: 'get',
         credentials: 'same-origin',
         redirect: 'follow',
         cache: 'reload', 
@@ -102,7 +103,7 @@ function loadSavedCities() {
         cities.textContent = cityNames;
         cityList.appendChild(cities);
         });
-;}
+}
 
 
 // Clear Previously Viewd
