@@ -15,7 +15,7 @@ var storageArray = [];
 
 /*             Functions               */
 
-function getLatandLon() {
+var getLatandLon = function() {
     var city = cityInput.value.trim() || citiesBtns.innerHTML;
     // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
     var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
@@ -26,6 +26,7 @@ function getLatandLon() {
                 alert("Error: " + response.statusText);
             } else {
                 return response.json().then(function (latLon) {
+                    getCurrentWeather(latLon);
                     console.log(latLon);
                 });
             }
@@ -33,13 +34,15 @@ function getLatandLon() {
         .catch(function (error) {
             alert(error + "Enter a Valid City Name")
         })
+        
 }
 
 // Function to get the weather from desired city
 var getCurrentWeather = function (latLon) {
-    var city = latLon.coord
+    var lat = latLon.coord.lat
+    var lon = latLon.coord.lon
     // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
-    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
+    var weatherUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+lon+'&units=imperial&exclude=hourly,daily&appid=d56a5eb4cf852a09ec80d61b85870176';
 
     fetch(weatherUrl)
         .then(function (response) {
@@ -113,6 +116,7 @@ clearBtn.addEventListener("click", function() {
 
 // Search button event listener
 searchBtn.addEventListener("click", getLatandLon);
+
 
 // recall preivously searched city
 // TODO: Write the loadSaveCity function
