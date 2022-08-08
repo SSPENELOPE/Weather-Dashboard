@@ -19,7 +19,6 @@ var storageArray = [];
 var getLatandLon = function() {
     var city = cityInput.value.trim() || citiesBtns.innerHTML;
     // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
-
     var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
 
     fetch(weatherUrl, {

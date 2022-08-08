@@ -12,9 +12,12 @@ weather as well as the 5 day forecast
 # Usage
 - Type in city you are searching for and  press the search button. Mind you spelling is important. If you do not spell your city name correctly you will get an error. Upon pressing search your current weather and 5 day forecast will be displayed
 
+- The API-Key used is free and theres nothing special about using it, so dont get excited if your an API-Key Pirate!
+
 ![alt text](.//assets/images/night-sky-stars-scenery-landscape-21-4K.jpg)
 
 - You can view and use this page at (https://sspenelope.github.io/Weather-Dashboard/)
 
 # Features 
 - I plan on adding Geolocation to the page so immediatly upon page load, the weather for the current area you live in will be displayed 
+
