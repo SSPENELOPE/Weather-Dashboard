@@ -6,6 +6,7 @@ var cityName = document.getElementById("city-name");
 var temp = document.getElementById("temp");
 var uvIndex = document.getElementById("uv-index");
 var citiesBtns = document.querySelectorAll(".cities");
+var clearBtn = document.getElementById("clear-button")
 var storageArray = [];
 
 
@@ -72,6 +73,23 @@ function loadSavedCities() {
         cityList.appendChild(cities);
         });
 ;}
+
+
+// Clear Previously Viewd
+function clearPreviouslyViewed() {
+    localStorage.clear();
+    cityList.innerHTML = "";
+};
+
+
+
+
+/*       Event Listeners       */
+
+// Clear Previously Viewed cities button
+clearBtn.addEventListener("click", function() {
+    clearPreviouslyViewed();
+});
 
 // Search button event listener
 searchBtn.addEventListener("click", getCurrentWeather);

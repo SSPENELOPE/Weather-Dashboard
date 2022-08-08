@@ -50,6 +50,12 @@ video {
     width: 5vw;
 }
 
+.custom-button2 {
+    margin-left: 5em;
+    width: 10vw;
+    height: 5vh;
+}
+
 .custom-card {
     display: flex;
     flex-direction: column;
