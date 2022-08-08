@@ -47,13 +47,14 @@ video {
 
 /*    Current Weather Card       */
 .custom-button {
-    width: 5vw;
+    width: auto;
+    min-width: 5vw;
 }
 
 .custom-button2 {
-    margin-left: 5em;
-    width: 10vw;
-    height: 5vh;
+    width: auto;
+    max-height: 5vh;
+    height: auto;
 }
 
 .custom-card {
