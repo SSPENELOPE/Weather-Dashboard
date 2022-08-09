@@ -107,8 +107,17 @@ function displayCurrentWeather(data) {
         temps[i].innerHTML = "Temprature: " + data.daily[i].temp.day + "F";
         winds[i].innerHTML = "Wind-Speed: " + data.daily[i].wind_speed + "MPH";
         humidities[i].innerHTML = "Humiditiy: " + data.daily[i].humidity + "%";
-        if (data.daily[i].clouds <= 25 && data.daily[i].rain < 15 ) {
-            icons[i].textContent = "<i class=\"fa fa-sun-o\" style=\"font-size:36px\"></i>"
+        
+            
+        
+        if (data.daily[i].clouds >= 36) {
+            icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-sun\" style=\"font-size:36px\"></i>"
+        } else if (data.daily[i].rain >= 61) {
+            icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-showers-heavy\"></i>"
+        } else if (data.daily[i].rain >= 25 && data.daily[i].clouds >= 36) {
+            icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-rain\"></i>"
+        } else {
+            icons[i].innerHTML = "<i class=\"fa-solid fa-sun\" style=\"font-size:36px\"></i>"
         }
     }
 
