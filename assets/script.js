@@ -64,9 +64,9 @@ var getCurrentWeather = function (latLon) {
             }
         })
         // This is causing an error When generating dates on line 101-104
-       /*  .catch(function (error) {
-            alert(error + "Enter a Valid City Name")
-        }) */
+        .catch(function (error) {
+            alert(error)
+        })
 }
 
 // Display the weather of the city selected
@@ -94,14 +94,22 @@ function displayCurrentWeather(data) {
     };
 
     // add 5 day forecast
-     var dates = document.querySelectorAll(".item1");
-   /* dates.forEach((date) => {
-        date.innerHTML = data.daily[0].dt;
-    })  */
-    for (var i = 0; i < data.daily.length; i++) {
+    var dates = document.querySelectorAll(".item-1");
+    var icons = document.querySelectorAll(".item-2");
+    var temps = document.querySelectorAll(".item-3");
+    var winds = document.querySelectorAll(".item-4");
+    var humidities = document.querySelectorAll(".item-5");
+
+    for (var i = 0; i < 5; i++) {
         var newUnixDate = data.daily[i].dt;
         var newDate = new Date(newUnixDate * 1000);
         dates[i].innerHTML = newDate.toDateString();
+        temps[i].innerHTML = "Temprature: " + data.daily[i].temp.day + "F";
+        winds[i].innerHTML = "Wind-Speed: " + data.daily[i].wind_speed + "MPH";
+        humidities[i].innerHTML = "Humiditiy: " + data.daily[i].humidity + "%";
+        if (data.daily[i].clouds <= 25 && data.daily[i].rain < 15 ) {
+            icons[i].textContent = "<i class=\"fa fa-sun-o\" style=\"font-size:36px\"></i>"
+        }
     }
 
     // Save the cities to storage
