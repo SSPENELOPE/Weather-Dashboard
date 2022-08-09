@@ -3,14 +3,15 @@ var searchBtn = document.getElementById("search");
 var cityList = document.getElementById("city-list");
 var cityInput = document.getElementById("city");
 var cityName = document.getElementById("city-name");
-var temp = document.getElementById("temp");
-var uvIndex = document.getElementById("uv-index");
 var citiesBtns = document.querySelectorAll(".cities");
 var clearBtn = document.getElementById("clear-button")
 var storageArray = [];
 
-
-
+// Current Weather Variables
+var temp = document.getElementById("temp");
+var wind = document.getElementById("wind");
+var humidity = document.getElementById("humidity");
+var uvIndex = document.getElementById("uv-index");
 
 
 /*             Functions               */
@@ -75,10 +76,22 @@ function displayCurrentWeather(data) {
     cities.textContent = cityInput.value.toUpperCase();
     cityList.appendChild(cities);
 
-    // add the weather data to the page
-        //cityName.innerHTML = cityInput.value.toUpperCase();
-        //temp.innerHTML = "Temprature: " + data.main.temp + "F";
-   
+    // add the current weather data to the page  
+        cityName.textContent = cityInput.value.toUpperCase();
+
+        temp.textContent = "Temprature: " + data.current.temp + "F " + data.current.dt + " ";
+
+        humidity.textContent = "Humidity: " + data.current.humidity + " %";
+        
+        wind.textContent= "Wind: " + data.current.wind_speed + " MPH";
+        
+        uvIndex.textContent = "UV-Index: " + data.current.uvi;
+        
+        if (data.current.uvi >= 5) {
+            uvIndex.setAttribute("style", "background-color:red");
+        } else {
+            uvIndex.setAttribute("style", "background-color:green");
+        };
 
     // Save the cities to storage
     storageArray = [];
@@ -110,8 +123,6 @@ function clearPreviouslyViewed() {
     localStorage.clear();
     cityList.innerHTML = "";
 };
-
-
 
 
 /*       Event Listeners       */
