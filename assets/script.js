@@ -81,7 +81,7 @@ function displayCurrentWeather(data) {
     var date = new Date(unixDate * 1000);
 
     // add the current weather data to the page  
-    cityName.textContent = cityInput.value.toUpperCase() + " " + date + " ";
+    cityName.textContent = cityInput.value.toUpperCase() + " (" + date.toDateString() + ")";
     temp.textContent = "Temprature: " + data.current.temp + "F ";
     humidity.textContent = "Humidity: " + data.current.humidity + " %";
     wind.textContent = "Wind: " + data.current.wind_speed + " MPH";
@@ -93,7 +93,7 @@ function displayCurrentWeather(data) {
     };
 
     // add 5 day forecast
-
+    
 
 
     // Save the cities to storage
