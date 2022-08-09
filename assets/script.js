@@ -63,9 +63,10 @@ var getCurrentWeather = function (latLon) {
                 });
             }
         })
-        .catch(function (error) {
+        // This is causing an error When generating dates on line 101-104
+       /*  .catch(function (error) {
             alert(error + "Enter a Valid City Name")
-        })
+        }) */
 }
 
 // Display the weather of the city selected
@@ -93,12 +94,14 @@ function displayCurrentWeather(data) {
     };
 
     // add 5 day forecast
-    var dates = document.querySelectorAll(".item1");
-   /*  dates.forEach((date) => {
-        date.innerHTML = data.daily.dt;
+     var dates = document.querySelectorAll(".item1");
+   /* dates.forEach((date) => {
+        date.innerHTML = data.daily[0].dt;
     })  */
     for (var i = 0; i < data.daily.length; i++) {
-        dates = data.daily[i].dt[i];
+        var newUnixDate = data.daily[i].dt;
+        var newDate = new Date(newUnixDate * 1000);
+        dates[i].innerHTML = newDate.toDateString();
     }
 
     // Save the cities to storage
