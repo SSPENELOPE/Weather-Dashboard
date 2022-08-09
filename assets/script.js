@@ -93,8 +93,13 @@ function displayCurrentWeather(data) {
     };
 
     // add 5 day forecast
-    
-
+    var dates = document.querySelectorAll(".item1");
+   /*  dates.forEach((date) => {
+        date.innerHTML = data.daily.dt;
+    })  */
+    for (var i = 0; i < data.daily.length; i++) {
+        dates = data.daily[i].dt[i];
+    }
 
     // Save the cities to storage
     storageArray = [];
