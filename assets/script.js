@@ -195,6 +195,8 @@ function loadSavedCities() {
         cities.textContent = cityNames;
         cityList.appendChild(cities);
     });
+    var video = document.querySelector(".video-1")
+    video.setAttribute("style", "postion:fixed")
 }
 
 
