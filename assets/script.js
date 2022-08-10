@@ -137,8 +137,10 @@ function displayCurrentWeather(data) {
     humidity.textContent = "Humidity: " + data.current.humidity + " %";
     wind.textContent = "Wind: " + data.current.wind_speed + " MPH";
     uvIndex.textContent = "UV-Index: " + data.current.uvi;
-    if (data.current.uvi >= 5) {
+    if (data.current.uvi > 6) {
         uvIndex.setAttribute("style", "background-color:red");
+    } else if (data.current.uvi <=6 && data.current.uvi >= 4) {
+        uvIndex.setAttribute("style", "background-color:yellow; color:black");
     } else {
         uvIndex.setAttribute("style", "background-color:green");
     };
