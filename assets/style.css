@@ -115,3 +115,13 @@
     text-shadow:
         .1vw 0vw .25vw #1e91f0, .2vw 0vw .25vw #1e3df0;
 }
+
+
+@media screen and (max-width: 780px) {
+    .video-1 {
+        display: none;
+    }
+    .wrapper {
+        background-color: black;
+    }    
+}
