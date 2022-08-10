@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-video {
+.video-1 {
     position: fixed;
     right: 0;
     bottom: 0;
@@ -57,18 +57,10 @@ video {
     height: auto;
 }
 
-.custom-card {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 20vh;
-    width: 90vw;
-}
-
 .custom-jumbotron {
     display: flex;
     flex-direction: row;
-    align-content: center;
+    align-content: flex-start;
     flex-wrap: wrap;
     height: 40vh;
 }
@@ -81,11 +73,11 @@ video {
 
 .city-stats-list {
     list-style: none;
+    text-align: left;
 }
 
 .city-name {
     font-size: 30px;
-    
 }
 
 /*     5 day forecast      */

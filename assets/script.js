@@ -69,6 +69,22 @@ var getCurrentWeather = function (latLon) {
         })
 }
 
+// Get users Geolocation function
+function getGeolocation() {
+    var successCallback = (position) => {
+        console.log(position);
+    };
+
+    var errorCallback = (error) => {
+        if (error) {
+            alert("User Denied Location")
+        } 
+        console.log(error);
+    };
+
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+};
+
 // Display the weather of the city selected
 function displayCurrentWeather(data) {
     // Create and append the searched cities
@@ -172,3 +188,4 @@ citiesBtns.forEach((cities) => {
 
 // Functions to call immediatley
 loadSavedCities();
+getGeolocation();
