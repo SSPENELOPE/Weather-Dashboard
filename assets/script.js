@@ -63,7 +63,6 @@ var getCurrentWeather = function (latLon) {
                 });
             }
         })
-        // This is causing an error When generating dates on line 101-104
         .catch(function (error) {
             alert(error)
         })
@@ -72,6 +71,9 @@ var getCurrentWeather = function (latLon) {
 // Get users Geolocation function
 function getGeolocation() {
     var successCallback = (position) => {
+        if (position) {
+            getWeatherGeo(position);
+        }
         console.log(position);
     };
 
@@ -84,6 +86,33 @@ function getGeolocation() {
 
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 };
+
+var getWeatherGeo = function (position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+    // Get the weather using onecall
+    var geoUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&lang=en&appid=ec2870611b1a5011e09492842b353545';
+
+    fetch(geoUrl, {
+        method: 'get',
+        credentials: 'same-origin',
+        redirect: 'follow',
+        cache: 'reload',
+    })
+        .then(function (response) {
+            if (!response.ok) {
+                alert("Error: " + response.statusText);
+            } else {
+                return response.json().then(function (data) {
+                    displayCurrentWeather(data);
+                    console.log(data);
+                });
+            }
+        })
+        .catch(function (error) {
+            alert(error)
+        })
+} 
 
 // Display the weather of the city selected
 function displayCurrentWeather(data) {
