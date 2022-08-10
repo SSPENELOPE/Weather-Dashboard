@@ -79,7 +79,7 @@ function getGeolocation() {
 
     var errorCallback = (error) => {
         if (error) {
-            alert("User Denied Location")
+            alert("Change your settings to allow location \nor refresh the page and click \"Allow\"")
         } 
         console.log(error);
     };
@@ -126,7 +126,12 @@ function displayCurrentWeather(data) {
     var unixDate = data.current.dt;
     var date = new Date(unixDate * 1000);
 
-    // add the current weather data to the page  
+    // add the current weather data to the page 
+    if (cityInput.value) {
+        cityName.textContent = cityInput.value.toUpperCase() + " (" + date.toDateString() + ")"; 
+    } else {
+        cityName.textContent = prompt("Enter Name of your Location") + " (" + date.toDateString() + ")"; 
+    }
     cityName.textContent = cityInput.value.toUpperCase() + " (" + date.toDateString() + ")";
     temp.textContent = "Temprature: " + data.current.temp + "F ";
     humidity.textContent = "Humidity: " + data.current.humidity + " %";
