@@ -130,9 +130,9 @@ function displayCurrentWeather(data) {
     if (cityInput.value) {
         cityName.textContent = cityInput.value.toUpperCase() + " (" + date.toDateString() + ")"; 
     } else {
-        cityName.textContent = prompt("Enter Name of your Location") + " (" + date.toDateString() + ")"; 
+        var userLocation = prompt("Enter Name of your Location");
+        cityName.innerText = userLocation.toUpperCase() + " " + "(" + date.toDateString() + ")"; 
     }
-    cityName.textContent = cityInput.value.toUpperCase() + " (" + date.toDateString() + ")";
     temp.textContent = "Temprature: " + data.current.temp + "F ";
     humidity.textContent = "Humidity: " + data.current.humidity + " %";
     wind.textContent = "Wind: " + data.current.wind_speed + " MPH";
