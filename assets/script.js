@@ -11,6 +11,8 @@ var storageArray = [];
 var temp = document.getElementById("temp");
 var wind = document.getElementById("wind");
 var humidity = document.getElementById("humidity");
+var sunnyGif = document.querySelector(".gif-1");
+var cloudyGif = document.querySelector(".gif-2");
 
 
 
@@ -137,6 +139,14 @@ function displayCurrentWeather(data) {
     temp.textContent = "Temprature: " + data.current.temp + "F ";
     humidity.textContent = "Humidity: " + data.current.humidity + " %";
     wind.textContent = "Wind: " + data.current.wind_speed + " MPH";
+
+    if (data.current.clouds <= 30) {
+        sunnyGif.setAttribute("style", "display:block;");
+        cloudyGif.setAttribute("style", "display:none");
+    } else {
+        cloudyGif.setAttribute("style", "display:block;");
+        sunnyGif.setAttribute("style", "display:none");
+    }
   
     // add 5 day forecast
     var dates = document.querySelectorAll(".item-1");

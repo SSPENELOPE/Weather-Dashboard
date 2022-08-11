@@ -16,7 +16,7 @@
 
   <!--Background Video-->
   <video class="video-1"playsinline autoplay muted loop>
-    <source src="./assets/images/background.mp4" type="video/webm">
+    <source src="./assets/images/backgroundvideo.mp4" type="video/webm">
     Your browser does not support the video tag.
   </video>
 
@@ -41,16 +41,22 @@
     <!--Current Weather Card-->
     <section class="col d-flex flex-wrap custom-div">
       <section class="card bg-dark text-white custom-jumbotron bg-transparent">
-       
-          <h2 class="text-light text-center">Your Current Weather</h2>
-          <ul class="city-stats-list">
-            <li class="city-name mx-1 neon" id="city-name"></li>
-            <li class="mx-1 neon" id="temp"></li>
-            <li class="mx-1 neon" id="wind"></li>
-            <li class="mx-1 neon" id="humidity"></li>
-          </ul>
-        
+          <div class="row w-100 flex-wrap">
+            <div class="col current-weather">
+              <h2 class="text-light text-center">Your Current Weather</h2>
+              <ul class="city-stats-list">
+                <li class="city-name mx-1 neon" id="city-name"></li>
+                <li class="mx-1 neon" id="temp"></li>
+                <li class="mx-1 neon" id="wind"></li>
+                <li class="mx-1 neon" id="humidity"></li>
+              </ul>
+            </div>
+            <div class="col img-div">
+              <div class="tenor-gif-embed gif-1" data-postid="16233754" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/screaming-sun-rick-and-morty-gif-16233754">Screaming Sun Rick And Morty GIF</a>from <a href="https://tenor.com/search/screaming+sun-gifs">Screaming Sun GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+              <div class="gif-2"><iframe src="https://giphy.com/embed/lOkbL3MJnEtHi" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
       </section>
+        
 
 
       <!--5 Day Forecast Area-->

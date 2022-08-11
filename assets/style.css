@@ -70,11 +70,33 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+   
+}
+
+.current-weather {
+    width: 40%;
 }
 
 .city-stats-list {
     list-style: none;
     text-align: left;
+}
+
+.img-div {
+    width: 40%;
+    height: 40vh;
+}
+
+.gif-1 {
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.gif-2 {
+    height: 100%;
+    width: 100%; 
+    display: none;
 }
 
 .city-name {
