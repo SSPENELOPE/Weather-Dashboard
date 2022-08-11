@@ -11,7 +11,7 @@ var storageArray = [];
 var temp = document.getElementById("temp");
 var wind = document.getElementById("wind");
 var humidity = document.getElementById("humidity");
-var uvIndex = document.getElementById("uv-index");
+
 
 
 /*             Functions               */
@@ -19,7 +19,7 @@ var uvIndex = document.getElementById("uv-index");
 // Get the lattitude and longitute by city name
 var getLatandLon = function () {
     var city = cityInput.value.trim() || citiesBtns.innerHTML;
-    // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
+    // Onecall 2.5 no longer displays UV-index
     var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
 
     fetch(weatherUrl, {
@@ -36,7 +36,7 @@ var getLatandLon = function () {
             }
         })
         .catch(function (error) {
-            alert(error + "Enter a Valid City Name")
+            alert(error)
         })
 }
 
@@ -133,18 +133,11 @@ function displayCurrentWeather(data) {
         var userLocation = prompt("Enter Name of your Location");
         cityName.innerText = userLocation.toUpperCase() + " " + "(" + date.toDateString() + ")"; 
     }
+
     temp.textContent = "Temprature: " + data.current.temp + "F ";
     humidity.textContent = "Humidity: " + data.current.humidity + " %";
     wind.textContent = "Wind: " + data.current.wind_speed + " MPH";
-    uvIndex.textContent = "UV-Index: " + data.current.uvi;
-    if (data.current.uvi > 6) {
-        uvIndex.setAttribute("style", "background-color:red");
-    } else if (data.current.uvi <=6 && data.current.uvi >= 4) {
-        uvIndex.setAttribute("style", "background-color:yellow; color:black");
-    } else {
-        uvIndex.setAttribute("style", "background-color:green");
-    };
-
+  
     // add 5 day forecast
     var dates = document.querySelectorAll(".item-1");
     var icons = document.querySelectorAll(".item-2");
@@ -160,13 +153,11 @@ function displayCurrentWeather(data) {
         winds[i].innerHTML = "Wind-Speed: " + data.daily[i].wind_speed + "MPH";
         humidities[i].innerHTML = "Humiditiy: " + data.daily[i].humidity + "%";
         
-            
-        
         if (data.daily[i].clouds >= 36) {
             icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-sun\" style=\"font-size:36px\"></i>"
-        } else if (data.daily[i].rain >= 61) {
+        } else if (data.daily[i].rain >= 5) {
             icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-showers-heavy\"></i>"
-        } else if (data.daily[i].rain >= 25 && data.daily[i].clouds >= 36) {
+        } else if (data.daily[i].rain >= 4 && data.daily[i].clouds >= 36) {
             icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-rain\"></i>"
         } else {
             icons[i].innerHTML = "<i class=\"fa-solid fa-sun\" style=\"font-size:36px\"></i>"
@@ -199,6 +190,32 @@ function loadSavedCities() {
     video.setAttribute("style", "postion:fixed")
 }
 
+var savedCityBtn = function () {
+    var city = cities.textContent;
+    // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
+    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
+
+    fetch(weatherUrl, {
+        cache: 'reload',
+    })
+        .then(function (response) {
+            if (!response.ok) {
+                alert("Error: " + response.statusText);
+            } else {
+                return response.json().then(function (latLon) {
+                    getCurrentWeather(latLon);
+                    console.log(latLon);
+                });
+            }
+        })
+        .catch(function (error) {
+            alert(error);
+        })
+
+       /*  for (var i = 0; i < citiesBtns.length; i++) {
+            citiesBtns.addEventListener("click", savedCityBtn);
+        } */
+}
 
 // Clear Previously Viewd
 function clearPreviouslyViewed() {
@@ -221,7 +238,7 @@ searchBtn.addEventListener("click", getLatandLon);
 // recall preivously searched city
 // TODO: Write the loadSaveCity function
 citiesBtns.forEach((cities) => {
-    cities.addEventListener("click", loadSavedCity);
+    cities.addEventListener("click", savedCityBtn);
 });
 
 // Functions to call immediatley
