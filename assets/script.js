@@ -33,7 +33,7 @@ var getLatandLon = function () {
             } else {
                 return response.json().then(function (latLon) {
                     getCurrentWeather(latLon);
-                    console.log(latLon);
+                    /* console.log(latLon); */
                 });
             }
         })
@@ -61,7 +61,7 @@ var getCurrentWeather = function (latLon) {
             } else {
                 return response.json().then(function (data) {
                     displayCurrentWeather(data);
-                    console.log(data);
+                    /* console.log(data); */
                 });
             }
         })
@@ -107,7 +107,7 @@ var getWeatherGeo = function (position) {
             } else {
                 return response.json().then(function (data) {
                     displayCurrentWeather(data);
-                    console.log(data);
+                    /* console.log(data); */
                 });
             }
         })
@@ -214,7 +214,7 @@ var savedCityBtn = function () {
             } else {
                 return response.json().then(function (latLon) {
                     getCurrentWeather(latLon);
-                    console.log(latLon);
+                    /* console.log(latLon); */
                 });
             }
         })
@@ -246,6 +246,7 @@ searchBtn.addEventListener("click", getLatandLon);
 // TODO: Write the loadSaveCity function
 citiesBtns.forEach((cities) => {
     cities.addEventListener("click", savedCityBtn);
+    console.log(citiesBtns);
 });
 
 // Functions to call immediatley
