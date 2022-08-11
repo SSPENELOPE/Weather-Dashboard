@@ -252,3 +252,5 @@ citiesBtns.forEach((cities) => {
 // Functions to call immediatley
 loadSavedCities();
 getGeolocation();
+
+//
