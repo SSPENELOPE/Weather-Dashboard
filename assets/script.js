@@ -183,7 +183,7 @@ function displayCurrentWeather(data) {
     });
 
     localStorage.setItem("savedCities", JSON.stringify(storageArray));
-    console.log(storageArray);
+    /* console.log(storageArray); */
 };
 
 // Load the previously saved cities
@@ -201,7 +201,9 @@ function loadSavedCities() {
 }
 
 var savedCityBtn = function () {
-    var city = cities.textContent;
+    for ( i = 0; i < storageArray.length; i++) {
+         var city = storageArray[i];
+    }
     // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
     var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
 
@@ -243,7 +245,6 @@ searchBtn.addEventListener("click", getLatandLon);
 
 
 // recall preivously searched city
-// TODO: Write the loadSaveCity function
 citiesBtns.forEach((cities) => {
     cities.addEventListener("click", savedCityBtn);
     console.log(citiesBtns);
