@@ -167,7 +167,7 @@ function displayCurrentWeather(data) {
             icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-sun\" style=\"font-size:36px\"></i>"
         } else if (data.daily[i].rain >= 5) {
             icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-showers-heavy\"></i>"
-        } else if (data.daily[i].rain >= 4 && data.daily[i].clouds >= 36) {
+        } else if (data.daily[i].rain >= 3 && data.daily[i].rain < 5 && data.daily[i].clouds >= 36) {
             icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-rain\"></i>"
         } else {
             icons[i].innerHTML = "<i class=\"fa-solid fa-sun\" style=\"font-size:36px\"></i>"
@@ -222,9 +222,6 @@ var savedCityBtn = function () {
             alert(error);
         })
 
-       /*  for (var i = 0; i < citiesBtns.length; i++) {
-            citiesBtns.addEventListener("click", savedCityBtn);
-        } */
 }
 
 // Clear Previously Viewd
