@@ -195,15 +195,15 @@ function loadSavedCities() {
         cities.classList = "bg-transparent text-center cities m-3";
         cities.textContent = cityNames;
         cityList.appendChild(cities);
+        cities.addEventListener("click", savedCityBtn(cities));
     });
+
     var video = document.querySelector(".video-1")
     video.setAttribute("style", "postion:fixed")
 }
 
 var savedCityBtn = function () {
-    for ( i = 0; i < storageArray.length; i++) {
-         var city = storageArray[i];
-    }
+    var city = storageArray;
     // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
     var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
 
