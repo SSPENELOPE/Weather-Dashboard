@@ -194,9 +194,11 @@ function loadSavedCities() {
         cities.classList = "bg-transparent text-center cities m-3";
         cities.textContent = cityNames;
         cityList.appendChild(cities);
-        cities.addEventListener("click", function() {
-            var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cities + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
-            fetch(weatherUrl, {
+        cities.addEventListener("click", function(event) {
+            let target = event.target;
+            console.log(target.innerText);
+            var savedUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + target.innerText + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
+            fetch(savedUrl, {
                 cache: 'reload',
             })
                 .then(function (response) {
