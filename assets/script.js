@@ -60,8 +60,6 @@ var getCurrentWeather = function (latLon) {
             } else {
                 return response.json().then(function (data) {
                     displayCurrentWeather(data);
-                    /* displayCityName(data); */
-                    console.log(data);
                 });
             }
         })
@@ -105,7 +103,6 @@ var getWeatherGeo = function (position) {
         method: 'get',
         credentials: 'same-origin',
         redirect: 'follow',
-        cache: 'reload',
     })
         .then(function (response) {
             if (!response.ok) {
@@ -127,13 +124,14 @@ function displayCurrentWeather(data) {
     var cities = document.createElement("button");
     cities.classList = "bg-transparent text-center cities m-3";
     cities.textContent = cityInput.value.toUpperCase();
+    // If statement to determine whether they exist or not
     if(!storageArray.includes(cities.textContent)) {
         cityList.appendChild(cities);
     }
+    // Fetch data based on the cities name
     cities.addEventListener("click", function(event) {
         cityInput.value = "";
         let target = event.target;
-        console.log(target.innerText);
         cityName.textContent = target.innerText;
 
         var savedUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + target.innerText + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
@@ -181,7 +179,8 @@ function displayCurrentWeather(data) {
     var temps = document.querySelectorAll(".item-3");
     var winds = document.querySelectorAll(".item-4");
     var humidities = document.querySelectorAll(".item-5");
-
+    
+    // Loop through all the returned data and apply it
     for (var i = 0; i < 5; i++) {
         var newUnixDate = data.daily[i].dt;
         var newDate = new Date(newUnixDate * 1000);
@@ -206,6 +205,7 @@ function displayCurrentWeather(data) {
 
     var savedCities = document.querySelectorAll(".cities");
     savedCities.forEach((cities) => {
+        // Check whether they exist in storage 
         if(!storageArray.includes(cities.textContent)) {
         storageArray.push(cities.textContent);
         }     
@@ -214,7 +214,7 @@ function displayCurrentWeather(data) {
     localStorage.setItem("savedCities", JSON.stringify(storageArray));
 };
 
-// Load the previously saved cities previously searched
+// Load the previously viewed and saved cities
 function loadSavedCities() {
     storageArray = JSON.parse(localStorage.getItem('savedCities')) || [];
     storageArray.forEach((cityNames) => {
@@ -222,6 +222,7 @@ function loadSavedCities() {
         cities.classList = "bg-transparent text-center cities m-3";
         cities.textContent = cityNames;
         cityList.appendChild(cities);
+        // Fetch the data based on saved cities name
         cities.addEventListener("click", function(event) {
             cityInput.value = "";
             let target = event.target;
@@ -256,20 +257,6 @@ function clearPreviouslyViewed() {
     localStorage.clear();
     cityList.innerHTML = "";
 };
-
-/* function checkSavedCites(cities, storageArray) {
-    storageArray = [];
-    var savedCities = document.querySelectorAll(".cities");
-    for (var i = 0; i < storageArray.length; i++) {
-        if (cities == storageArray) {
-            break;
-        } else {
-            storageArray.push(cities.textContent);   
-        }
-    }
-    localStorage.setItem("savedCities", JSON.stringify(storageArray));
-} */
-
 
 /*       Event Listeners       */
 
