@@ -84,7 +84,13 @@ function getGeolocation() {
         console.log(error);
     };
 
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    var optionsCallback = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0 
+    };
+
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, optionsCallback);
 };
 
 // Get the weather by lat and lon based on user location
