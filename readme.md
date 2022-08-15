@@ -24,6 +24,9 @@ to enter your location as I am not paying for google maps API due to not having 
 
 - You can view and use this page at (https://sspenelope.github.io/Weather-Dashboard/)
 
+# Bugs
+- There is currently a bug for anyone who uses apple IOS v15.0 or higher. For some reason the 5 day forecast likes to push of to the side of the screen and you are forced to scroll over. Im not that expierenced of a developer to be troubleshooting IOS updates but I will attempt to fix this in the future.
+
 # Credits
 - Big thanks to "dcode" on youtube for posting the video on how to use geolocation in JavaScript. Some of my code used in my getGelocation function came from his video. You can check his video out at (https://www.youtube.com/watch?v=916M64DuRnk&ab_channel=dcode)
 

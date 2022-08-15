@@ -212,13 +212,15 @@ function displayCurrentWeather(data) {
     var savedCities = document.querySelectorAll(".cities");
     savedCities.forEach((cities) => {
         // Check whether they exist in storage 
-        if(!storageArray.includes(cities.textContent)) {
+        if(!storageArray.includes(cities.textContent) && cities.textContent) {
         storageArray.push(cities.textContent);
-        }     
+        }    
     });
 
     localStorage.setItem("savedCities", JSON.stringify(storageArray));
 };
+
+
 
 // Load the previously viewed and saved cities
 function loadSavedCities() {
