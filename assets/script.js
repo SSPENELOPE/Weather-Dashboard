@@ -20,7 +20,7 @@ var cloudyGif = document.querySelector(".gif-2");
 
 // Get the lattitude and longitute by city name
 var getLatandLon = function () {
-    var city = cityInput.value.trim() || citiesBtns.innerHTML;
+    var city = cityInput.value.trim();
     // Onecall 2.5 no longer displays UV-index
     var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
 
@@ -33,7 +33,6 @@ var getLatandLon = function () {
             } else {
                 return response.json().then(function (latLon) {
                     getCurrentWeather(latLon);
-                    /* console.log(latLon); */
                 });
             }
         })
@@ -123,6 +122,7 @@ function displayCurrentWeather(data) {
     cities.classList = "bg-transparent text-center cities m-3";
     cities.textContent = cityInput.value.toUpperCase();
     cityList.appendChild(cities);
+   /*  cities.addEventListener("click", getLatandLon); */
 
     // Convert Unix Date to readable date 
     var unixDate = data.current.dt;
@@ -183,7 +183,6 @@ function displayCurrentWeather(data) {
     });
 
     localStorage.setItem("savedCities", JSON.stringify(storageArray));
-    /* console.log(storageArray); */
 };
 
 // Load the previously saved cities
@@ -195,16 +194,34 @@ function loadSavedCities() {
         cities.classList = "bg-transparent text-center cities m-3";
         cities.textContent = cityNames;
         cityList.appendChild(cities);
-        cities.addEventListener("click", savedCityBtn(cities));
+        cities.addEventListener("click", function() {
+            var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cities + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
+            fetch(weatherUrl, {
+                cache: 'reload',
+            })
+                .then(function (response) {
+                    if (!response.ok) {
+                        alert("Error: " + response.statusText);
+                    } else {
+                        return response.json().then(function (latLon) {
+                            getCurrentWeather(latLon);
+                        });
+                    }
+                })
+                .catch(function (error) {
+                    alert(error);
+                })
+        });
     });
 
+    // This is for troubleshooting the new Apple IOS update. The new IOS does not like background videos for some reason
     var video = document.querySelector(".video-1")
     video.setAttribute("style", "postion:fixed")
 }
 
-var savedCityBtn = function () {
+/* var savedCityBtn = function () {
     var city = storageArray;
-    // The "weather?" handle does not retrieve the UV-index, "onecall?" handle will but cannot call city
+    // call back weather API by saved city name
     var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
 
     fetch(weatherUrl, {
@@ -216,7 +233,6 @@ var savedCityBtn = function () {
             } else {
                 return response.json().then(function (latLon) {
                     getCurrentWeather(latLon);
-                    /* console.log(latLon); */
                 });
             }
         })
@@ -224,7 +240,7 @@ var savedCityBtn = function () {
             alert(error);
         })
 
-}
+} */
 
 // Clear Previously Viewd
 function clearPreviouslyViewed() {
@@ -243,15 +259,7 @@ clearBtn.addEventListener("click", function () {
 // Search button event listener
 searchBtn.addEventListener("click", getLatandLon);
 
-
-// recall preivously searched city
-citiesBtns.forEach((cities) => {
-    cities.addEventListener("click", savedCityBtn);
-    console.log(citiesBtns);
-});
-
 // Functions to call immediatley
 loadSavedCities();
 getGeolocation();
 
-//
