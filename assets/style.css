@@ -70,7 +70,6 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-   
 }
 
 .current-weather {
@@ -80,6 +79,7 @@
 .city-stats-list {
     list-style: none;
     text-align: left;
+    font-size: 30px;
 }
 
 .img-div {
@@ -100,7 +100,7 @@
 }
 
 .city-name {
-    font-size: 30px;
+    font-size: 45px;
 }
 
 /*     5 day forecast      */
@@ -110,6 +110,15 @@
     flex-wrap: wrap;
 
 }
+
+.item-1,
+.item-2,
+.item-3,
+.item-4,
+.item-5 {
+    background-color: black;
+}
+
 
 .neon-row {
     box-shadow:
@@ -140,6 +149,8 @@
 }
 
 
+
+/*     Media Queries      */
 @media screen and (max-width: 780px) {
     .video-1 {
         display: none;
@@ -147,7 +158,8 @@
     .wrapper {
         background-color: black;
     }    
-    .city-name {
+    .city-name,
+    .city-stats-list {
         font-size: 19px;
     }
 }

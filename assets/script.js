@@ -18,7 +18,7 @@ var cloudyGif = document.querySelector(".gif-2");
 
 /*             Functions               */
 
-// Get the lattitude and longitute by city name
+// Get the lat and lon by city name
 var getLatandLon = function () {
     var city = cityInput.value.trim();
     // Onecall 2.5 no longer displays UV-index
@@ -41,7 +41,7 @@ var getLatandLon = function () {
         })
 }
 
-// Function to get the weather from desired city
+// Function to get the weather using lat and lon
 var getCurrentWeather = function (latLon) {
     var lat = latLon.coord.lat
     var lon = latLon.coord.lon
@@ -60,6 +60,7 @@ var getCurrentWeather = function (latLon) {
             } else {
                 return response.json().then(function (data) {
                     displayCurrentWeather(data);
+                    /* displayCityName(data); */
                     console.log(data);
                 });
             }
@@ -88,11 +89,17 @@ function getGeolocation() {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 };
 
+// Get the weather by lat and lon based on user location
 var getWeatherGeo = function (position) {
     var lat = position.coords.latitude;
     var lon = position.coords.longitude;
     // Get the weather using onecall
     var geoUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&lang=en&appid=ec2870611b1a5011e09492842b353545';
+    
+    var unixDate = position.timestamp;
+    var date = new Date(unixDate);
+    var userLocation = prompt("Enter Name of your Location");
+    cityName.innerText = userLocation.toUpperCase() + " " + "(" + date.toDateString() + ")";
 
     fetch(geoUrl, {
         method: 'get',
@@ -106,7 +113,6 @@ var getWeatherGeo = function (position) {
             } else {
                 return response.json().then(function (data) {
                     displayCurrentWeather(data);
-                    /* console.log(data); */
                 });
             }
         })
@@ -122,21 +128,39 @@ function displayCurrentWeather(data) {
     cities.classList = "bg-transparent text-center cities m-3";
     cities.textContent = cityInput.value.toUpperCase();
     cityList.appendChild(cities);
-    
+    cities.addEventListener("click", function(event) {
+        cityInput.value = "";
+        let target = event.target;
+        console.log(target.innerText);
+        cityName.textContent = target.innerText;
+
+        var savedUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + target.innerText + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
+
+        fetch(savedUrl, {
+            cache: 'reload',
+        })
+            .then(function (response) {
+                if (!response.ok) {
+                    alert("Error: " + response.statusText);
+                } else {
+                    return response.json().then(function (latLon) {
+                        getCurrentWeather(latLon);
+                    });
+                }
+            })
+            .catch(function (error) {
+                alert(error);
+            })
+    });
+
     // Convert Unix Date to readable date 
     var unixDate = data.current.dt;
     var date = new Date(unixDate * 1000);
 
     // add the current weather data to the page 
     if (cityInput.value) {
-        cityName.textContent = cityInput.value.toUpperCase() + " (" + date.toDateString() + ")"; 
-    } else if(getWeatherGeo) {
-        var userLocation = prompt("Enter Name of your Location");
-        cityName.innerText = userLocation.toUpperCase() + " " + "(" + date.toDateString() + ")";
-    } else {
-       cityName.innerHTML = "";
-    }
-
+       cityName.textContent = cityInput.value.toUpperCase() + " (" + date.toDateString() + ")"; 
+    } 
     temp.textContent = "Temprature: " + data.current.temp + "F ";
     humidity.textContent = "Humidity: " + data.current.humidity + " %";
     wind.textContent = "Wind: " + data.current.wind_speed + " MPH";
@@ -180,22 +204,24 @@ function displayCurrentWeather(data) {
 
     var savedCities = document.querySelectorAll(".cities");
     savedCities.forEach((cities) => {
+        if (storageArray.indexOf(cities) === -1) {
         storageArray.push(cities.textContent);
+        }
     });
 
     localStorage.setItem("savedCities", JSON.stringify(storageArray));
 };
 
-// Load the previously saved cities
+// Load the previously saved cities previously searched
 function loadSavedCities() {
     storageArray = JSON.parse(localStorage.getItem('savedCities')) || [];
-
     storageArray.forEach((cityNames) => {
         var cities = document.createElement("button");
         cities.classList = "bg-transparent text-center cities m-3";
         cities.textContent = cityNames;
         cityList.appendChild(cities);
         cities.addEventListener("click", function(event) {
+            cityInput.value = "";
             let target = event.target;
             console.log(target.innerText);
             cityName.textContent = target.innerText;
@@ -218,7 +244,7 @@ function loadSavedCities() {
         });
     });
 
-    // This is for troubleshooting the new Apple IOS update. The new IOS does not like background videos for some reason
+    // This is for troubleshooting the new Apple IOS update. The new IOS does not like background videos in the HTML tags for some reason
     var video = document.querySelector(".video-1")
     video.setAttribute("style", "postion:fixed")
 }
@@ -238,7 +264,7 @@ clearBtn.addEventListener("click", function () {
 });
 
 // Search button event listener
-searchBtn.addEventListener("click", getLatandLon);
+searchBtn.addEventListener("click", getLatandLon)
 
 // Functions to call immediatley
 loadSavedCities();
