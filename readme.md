@@ -18,7 +18,7 @@ to enter your location as I am not paying for google maps API due to not having 
 
 - The API-Key used is free and there is nothing special about using it, so dont get excited if your an API-Key Pirate!
 
-- Your geolocation is not appended to the previously viewed cities as this JS file is already long enough and is not a requirement of this project anyways. If you would like to add it to this page feel free to do so. 
+- Your geolocation is not appended to the previously viewed cities as this JS file is already long enough and that is not a requirement of this project anyways. If you would like to add clone this repository and add it to this page, feel free to do so. I do however plan on adding that feature later on when I refactor this page using a different language.
 
 ![alt text](./assets/images/application.screenshot.png)
 

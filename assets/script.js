@@ -133,7 +133,7 @@ function displayCurrentWeather(data) {
     // If statement to determine whether they exist or not
     if(!storageArray.includes(cities.textContent)) {
         cityList.appendChild(cities);
-    }
+    } 
     // Fetch data based on the cities name
     cities.addEventListener("click", function(event) {
         cityInput.value = "";
