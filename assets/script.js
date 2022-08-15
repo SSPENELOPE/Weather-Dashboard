@@ -4,7 +4,7 @@ var cityList = document.getElementById("city-list");
 var cityInput = document.getElementById("city");
 var cityName = document.getElementById("city-name");
 var citiesBtns = document.querySelectorAll(".cities");
-var clearBtn = document.getElementById("clear-button")
+var clearBtn = document.getElementById("clear-button");
 var storageArray = [];
 
 // Current Weather Variables
@@ -122,8 +122,7 @@ function displayCurrentWeather(data) {
     cities.classList = "bg-transparent text-center cities m-3";
     cities.textContent = cityInput.value.toUpperCase();
     cityList.appendChild(cities);
-   /*  cities.addEventListener("click", getLatandLon); */
-
+    
     // Convert Unix Date to readable date 
     var unixDate = data.current.dt;
     var date = new Date(unixDate * 1000);
@@ -131,11 +130,11 @@ function displayCurrentWeather(data) {
     // add the current weather data to the page 
     if (cityInput.value) {
         cityName.textContent = cityInput.value.toUpperCase() + " (" + date.toDateString() + ")"; 
-    } else if(loadSavedCities) {
-       // Do nothing
-    } else {
+    } else if(getWeatherGeo) {
         var userLocation = prompt("Enter Name of your Location");
-        cityName.innerText = userLocation.toUpperCase() + " " + "(" + date.toDateString() + ")"; 
+        cityName.innerText = userLocation.toUpperCase() + " " + "(" + date.toDateString() + ")";
+    } else {
+       cityName.innerHTML = "";
     }
 
     temp.textContent = "Temprature: " + data.current.temp + "F ";
