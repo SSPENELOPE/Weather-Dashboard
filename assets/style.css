@@ -163,3 +163,18 @@
         font-size: 19px;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .video-1 {
+        display: none;
+    }
+    .wrapper {
+        background-color: black;
+        flex-direction: column;
+    }    
+    .city-name,
+    .city-stats-list,
+    .forecast h3 {
+        font-size: 17px;
+    }
+}
