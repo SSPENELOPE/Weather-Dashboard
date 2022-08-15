@@ -127,7 +127,9 @@ function displayCurrentWeather(data) {
     var cities = document.createElement("button");
     cities.classList = "bg-transparent text-center cities m-3";
     cities.textContent = cityInput.value.toUpperCase();
-    cityList.appendChild(cities);
+    if(!storageArray.includes(cities.textContent)) {
+        cityList.appendChild(cities);
+    }
     cities.addEventListener("click", function(event) {
         cityInput.value = "";
         let target = event.target;
@@ -204,9 +206,9 @@ function displayCurrentWeather(data) {
 
     var savedCities = document.querySelectorAll(".cities");
     savedCities.forEach((cities) => {
-        if (storageArray.indexOf(cities) === -1) {
+        if(!storageArray.includes(cities.textContent)) {
         storageArray.push(cities.textContent);
-        }
+        }     
     });
 
     localStorage.setItem("savedCities", JSON.stringify(storageArray));
@@ -254,6 +256,19 @@ function clearPreviouslyViewed() {
     localStorage.clear();
     cityList.innerHTML = "";
 };
+
+/* function checkSavedCites(cities, storageArray) {
+    storageArray = [];
+    var savedCities = document.querySelectorAll(".cities");
+    for (var i = 0; i < storageArray.length; i++) {
+        if (cities == storageArray) {
+            break;
+        } else {
+            storageArray.push(cities.textContent);   
+        }
+    }
+    localStorage.setItem("savedCities", JSON.stringify(storageArray));
+} */
 
 
 /*       Event Listeners       */
