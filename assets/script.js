@@ -60,7 +60,7 @@ var getCurrentWeather = function (latLon) {
             } else {
                 return response.json().then(function (data) {
                     displayCurrentWeather(data);
-                    /* console.log(data); */
+                    console.log(data);
                 });
             }
         })
@@ -131,6 +131,8 @@ function displayCurrentWeather(data) {
     // add the current weather data to the page 
     if (cityInput.value) {
         cityName.textContent = cityInput.value.toUpperCase() + " (" + date.toDateString() + ")"; 
+    } else if(loadSavedCities) {
+       // Do nothing
     } else {
         var userLocation = prompt("Enter Name of your Location");
         cityName.innerText = userLocation.toUpperCase() + " " + "(" + date.toDateString() + ")"; 
@@ -197,6 +199,7 @@ function loadSavedCities() {
         cities.addEventListener("click", function(event) {
             let target = event.target;
             console.log(target.innerText);
+            cityName.textContent = target.innerText;
             var savedUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + target.innerText + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
             fetch(savedUrl, {
                 cache: 'reload',
@@ -220,29 +223,6 @@ function loadSavedCities() {
     var video = document.querySelector(".video-1")
     video.setAttribute("style", "postion:fixed")
 }
-
-/* var savedCityBtn = function () {
-    var city = storageArray;
-    // call back weather API by saved city name
-    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
-
-    fetch(weatherUrl, {
-        cache: 'reload',
-    })
-        .then(function (response) {
-            if (!response.ok) {
-                alert("Error: " + response.statusText);
-            } else {
-                return response.json().then(function (latLon) {
-                    getCurrentWeather(latLon);
-                });
-            }
-        })
-        .catch(function (error) {
-            alert(error);
-        })
-
-} */
 
 // Clear Previously Viewd
 function clearPreviouslyViewed() {
