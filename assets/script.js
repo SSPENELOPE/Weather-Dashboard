@@ -74,14 +74,14 @@ function getGeolocation() {
         if (position) {
             getWeatherGeo(position);
         }
-        console.log(position);
+       /*  console.log(position); */
     };
 
     var errorCallback = (error) => {
         if (error) {
             alert("Change your settings to allow location \nor refresh the page and click \"Allow\"")
         } 
-        console.log(error);
+        /* console.log(error); */
     };
 
     var optionsCallback = {
@@ -234,7 +234,6 @@ function loadSavedCities() {
         cities.addEventListener("click", function(event) {
             cityInput.value = "";
             let target = event.target;
-            console.log(target.innerText);
             cityName.textContent = target.innerText;
             var savedUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + target.innerText + '&units=imperial&exclude=hourly,daily&appid=ec2870611b1a5011e09492842b353545';
             fetch(savedUrl, {
