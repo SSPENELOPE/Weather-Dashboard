@@ -27,6 +27,8 @@ to enter your location as I am not paying for google maps API due to not having 
 # Bugs
 - There is currently a bug for anyone who uses apple IOS v15.0 or higher. For some reason the 5 day forecast likes to push off to the side of the screen and you are forced to scroll over. Im not that expierenced of a developer to be troubleshooting IOS updates but I will attempt to fix this in the future.
 
+- Be aware that depending on the users browser and settings, sometimes an error will be created due to the geolocation automaticaly being block. Its caused by the function not being shut down immediatly by the user declining geolocation. No worries though, the page will function and operate correctly and if the user should choose, they can change their settings and use the geolocation feature which should produce no errors.
+
 # Credits
 - Big thanks to "dcode" on youtube for posting the video on how to use geolocation in JavaScript. Some of my code used in my getGelocation function came from his video. You can check his video out at (https://www.youtube.com/watch?v=916M64DuRnk&ab_channel=dcode)
 
